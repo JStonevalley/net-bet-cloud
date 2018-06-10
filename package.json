@@ -1,11 +1,26 @@
 {
   "name": "net-bet-cloud",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "Sports betting",
+  "license": "MIT",
   "author": "Jonas Stendahl",
-  "license": "ISC"
+  "scripts": {
+    "login": "firebase login",
+    "preserve": "npm run package:functions",
+    "serve": "firebase serve --only functions",
+    "deploy": "npm run format && npm run package:functions && firebase deploy",
+    "format": "standard --fix './firebaseFunctions/index.js'",
+    "prepackage:functions": "rimraf functions",
+    "package:functions": "babel firebaseFunctions/src --out-dir functions --copy-files",
+    "postpackage:functions": "cd functions && npm install"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.49",
+    "@babel/core": "^7.0.0-beta.49",
+    "@babel/preset-env": "^7.0.0-beta.49",
+    "standard": "11.0.1",
+    "firebase-tools": "^3.18.6",
+    "prettier": "^1.13.5",
+    "rimraf": "^2.6.2"
+  }
 }
