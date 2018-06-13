@@ -8,19 +8,19 @@
     "login": "firebase login",
     "preserve": "npm run package:functions",
     "serve": "firebase serve --only functions",
-    "deploy": "npm run format && npm run package:functions && firebase deploy",
+    "deploy": "npm run format && npm run package:functions && firebase deploy --only functions",
     "format": "standard --fix './firebaseFunctions/index.js'",
     "prepackage:functions": "rimraf functions",
-    "package:functions": "babel firebaseFunctions/src --out-dir functions --copy-files",
+    "package:functions": "npx babel firebaseFunctions --out-dir functions --copy-files --ignore firebaseFunctions/node_modules",
     "postpackage:functions": "cd functions && npm install"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.49",
-    "@babel/core": "^7.0.0-beta.49",
-    "@babel/preset-env": "^7.0.0-beta.49",
-    "standard": "11.0.1",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.13.0",
+    "babel-preset-env": "^1.7.0",
     "firebase-tools": "^3.18.6",
     "prettier": "^1.13.5",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "standard": "11.0.1"
   }
 }
